@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Title</title>
+        <title>Note</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="static/css/uikit.min.css" />
@@ -18,13 +18,13 @@
                 <div class="uk-navbar-left">
                     <ul class="uk-navbar-nav">
                         <li><span class="m_mark">LYE</span></li>
-                        <li><a href="/"><i class="fa fa-certificate" style="opacity: 0.7;" aria-hidden="true"></i><span class="m_title">首页</span></a></li>
+                        <li><a href="index.html"><i class="fa fa-certificate" style="opacity: 0.7;" aria-hidden="true"></i><span class="m_title">首页</span></a></li>
                         <li class="uk-active"><a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i><span class="m_title">笔记</span></a></li>
-                        <li><a href="#"><i class="fa fa-gamepad" aria-hidden="true"></i><span class="m_title">MC</span></a></li>
+                        <li><a href="mc.html"><i class="fa fa-gamepad" aria-hidden="true"></i><span class="m_title">MC</span></a></li>
+                        <li><a href="about.html"><i class="fa fa-circle-o" aria-hidden="true"></i><span class="m_title">关于</span></a></li>
                     </ul>
                 </div>
-
-                <div class="uk-navbar-right">
+                <div class="uk-navbar-right" style="float:right;">
                     <div>
                         <a class="uk-navbar-toggle" uk-search-icon href="#"></a>
                         <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
@@ -34,6 +34,11 @@
                         </div>
                     </div>
                 </div>
+                <ul class="uk-navbar-nav">
+                        <li><a href="form.html"><span class="m_login">注册</span></a></li>
+                        <li><a href="form.html"><span class="m_login">登录</span></a></li>
+                </ul>
+
             </nav>
         </div>
         
@@ -42,15 +47,14 @@
 
         <!--笔记内容-->
         <ul uk-accordion style="width:75%;left: 22%;position:absolute;top: 100px;height: 2000px;">
+            <!--外层循环-->
             <li class="uk-open">
                 <a class="uk-accordion-title m_category" href="#"><i class="fa fa-book" aria-hidden="true"></i>机器学习</a>
                 <div class="uk-accordion-content">
-                    <h2><i class="fa fa-bookmark m_notehead" aria-hidden="true"></i>head1</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a>readmore</a>
-                    <hr>
-                    <h2><i class="fa fa-bookmark m_notehead" aria-hidden="true"></i>head1</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <!--内层循环-->
+                    <h2 style="display:inline"><i class="fa fa-bookmark m_notehead" aria-hidden="true"></i>{{title}}</h2>
+                    <p style="display:inline">{{metadata}}</p>
+                    <p>{{content}}</p>
                     <a>readmore</a>
                     <hr>
                 </div>
@@ -67,6 +71,7 @@
                     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
                 </div>
             </li>
+
             <a href="#" uk-totop uk-scroll style="left:95%;position: relative;"></a>
         </ul>
 

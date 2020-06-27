@@ -14,3 +14,7 @@ i{
 .m_mark{
     line-height:100%;position: relative;top: calc(50% - 20px);height: 60px;font-size: 40px;left: 13px;
 }
+.m_login{
+    font-size: 15px;
+    line-height: 100%;
+}
