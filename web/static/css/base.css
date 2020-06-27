@@ -1,0 +1,16 @@
+.m_title{
+    font-size: 25px;
+    line-height: 50%;
+}
+.m_category{
+    background-color:rgba(205, 233, 207, 0.5);
+}
+i{
+    margin: 10px;
+}
+.m_notehead{
+    margin: auto;
+}
+.m_mark{
+    line-height:100%;position: relative;top: calc(50% - 20px);height: 60px;font-size: 40px;left: 13px;
+}

@@ -1,0 +1,64 @@
+*{margin:0;padding:0;}
+
+
+
+.stars-wrapper {
+  position: relative;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  background-image:url('../image/star-back.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+
+.comet {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-animation: comet 10s linear infinite;
+          animation: comet 10s linear infinite;
+}
+@-webkit-keyframes comet {
+  0%,
+		40% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  60%,
+		100% {
+    -webkit-transform: translateX(-100vmax);
+            transform: translateX(-100vmax);
+    opacity: 0;
+  }
+}
+@keyframes comet {
+  0%,
+		40% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  60%,
+		100% {
+    -webkit-transform: translateX(-100vmax);
+            transform: translateX(-100vmax);
+    opacity: 0;
+  }
+}
+.comet-b {
+  -webkit-animation-delay: -3.3s;
+          animation-delay: -3.3s;
+}
+
+.comet-c {
+  -webkit-animation-delay: -5s;
+          animation-delay: -5s;
+}
