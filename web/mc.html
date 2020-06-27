@@ -3,8 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>我的世界</title>
-</head>
-<body>
 
+        <link rel="stylesheet" href="static/css/animate.css" />
+        <link rel="stylesheet" href="static/css/uikit.min.css" />
+        <link rel="stylesheet" href="static/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="static/css/base.css"/>
+        <script src="static/js/uikit.min.js"></script>
+        <script src="static/js/uikit-icons.min.js"></script>
+        <style>
+            
+        </style>
+</head>
+<body style="overflow: hidden;height:100vh;">
+        <!--导航栏-->
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;background-color: rgba(122, 250, 110,0.4);">
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li><span class="m_mark">LYE</span></li>
+                        <li><a href="index.html"><i class="fa fa-certificate" style="opacity: 0.7;" aria-hidden="true"></i><span class="m_title">首页</span></a></li>
+                        <li><a href="note_nav.html"><i class="fa fa-sticky-note" aria-hidden="true"></i><span class="m_title">笔记</span></a></li>
+                        <li  class="uk-active"><a href="#"><i class="fa fa-gamepad" aria-hidden="true"></i><span class="m_title">MC</span></a></li>
+                        <li><a href="album.html"><i class="fa fa-picture-o" aria-hidden="true"></i><span class="m_title">相册</span></a></li>
+                        <li><a href="about.html"><i class="fa fa-circle-o" aria-hidden="true"></i><span class="m_title">关于</span></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!--背景-->
+		<div id="frame" >
+    		<div id="photos" class="play">
+       		    <img src="static/image/mc-background1.jpg" >
+        		<img src="static/image/mc-background2.jpg" >
+				<img src="static/image/mc-background3.jpg" >
+    		</div>
+        </div>
+        
+        <div style="position: absolute;width: 20%;height: 10%;left: 40%;top: 15%;text-align: center;font-size:50px;color:dimgrey;">
+        Minecraft
+        <hr>
+        </div>
+
+        <div class="animate__animated animate__cus_fadeInUp animate__slow" style="position: absolute;width: 24%;height: 54%;left: 9%;top: 20%; background-color: rgba(0,0,0,0.5);">
+            <div style="background-color: rgba(255,255,255,0.2);height: 92%;margin: 4%;">
+                <h1 style="text-align: center;">常用网站集合</h1>
+            </div>
+        </div>
+        <div class="animate__animated animate__cus_fadeInUp animate__slow animate__delay-1s" style="position: absolute;width: 24%;height: 54%;left: 38%;top: 30%; background-color: rgba(0,0,0,0.5);">
+            <div style="background-color: rgba(255,255,255,0.2);height: 92%;margin: 4%;">
+                <h1 style="text-align: center;">常驻地</h1>
+            </div>
+        </div>
+        <div class="animate__animated animate__cus_fadeInUp animate__slow animate__delay-2s" style="position: absolute;width: 24%;height: 54%;right: 9%;top: 20%; background-color: rgba(0,0,0,0.5);">
+            <div style="background-color: rgba(255,255,255,0.2);height: 92%;margin: 4%;">
+                <h1 style="text-align: center;">个人服</h1>
+            </div>
+        </div>
 </body>
 </html>

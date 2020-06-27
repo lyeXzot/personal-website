@@ -18,3 +18,52 @@ i{
     font-size: 15px;
     line-height: 100%;
 }
+.m_list{
+    border-radius: 10px;border: 1.5px rgb(205,233,207) solid;width: 100%;text-align: inherit;
+}
+.m_list h2{
+    border-bottom: 1px rgb(205,233,207) solid;margin: 3px;
+}
+.m_list h5{
+    margin: 5px;display: inline;
+}
+.m_list span{
+    margin: 5px;
+    color: black;
+}
+.m_list p{
+    margin: 5px;
+    font-size: 10px;
+    color: cornflowerblue;
+}
+.m_list a{
+    text-decoration: none;
+}
+.m_botton{
+    font-size: 20px;
+    color: white; 
+    text-align: center;
+    border: 1.5px black solid;
+    line-height: 40px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition-property: all;
+    transition-duration: 0.8s;
+}
+.m_botton a{
+    color: white;
+    text-decoration: none;
+}
+.m_botton:hover{
+    background-color: rgba(0, 0, 0, 0.75);
+    color: aliceblue;
+}
+#frame{position:absolute;left: 0px;top: 0px; width:100%;height:100%;overflow:hidden;z-index: 0}
+#photos {  position: absolute;z-index:1;  width:300%;}
+#photos img{float:left;width:33.333%;height:50%}
+.play{ animation: ma 15s ease-out infinite alternate;}
+@keyframes ma {
+                0%,30% {        margin-left: 0px;       }
+                35%,70% {       margin-left: -100%;    }
+            	75%,100% {margin-left: -200%;}
+            }

@@ -3,14 +3,10 @@
 <html lang="en" >
 <head>
 <meta charset="UTF-8">
-<title>CodePen - Starry Sky with layered SVG + CSS Animation</title>
+<title>Register</title>
 
   <link rel="stylesheet" href="static/css/star.css">
-  <link rel="stylesheet" href="static/css/uikit.min.css" />
-  <link rel="stylesheet" href="static/css/font-awesome.min.css"/>
-  <link rel="stylesheet" href="static/css/base.css"/>
-  <script src="static/js/uikit.min.js"></script>
-  <script src="static/js/uikit-icons.min.js"></script>
+
 
 </head>
 <body>
@@ -35,7 +31,15 @@
   </svg>
 </div>
 
-<div style="position:absolute;width:30%;height:50%;backgound-color:yellow;left:20%;top:0px;">asjdojioasioijofajiovsjiodjiofsjiojiofvsxzsvd</div>
+<div style="position:absolute;width:28%;height:60%;background-color:rgb(255, 255, 255, 0.5);left:35%;top:15%;color: black;border-radius: 10px;">
+  <h1 style="text-decoration:overline;text-align: center;">欢迎注册</h1> 
+  <form action="/logic" method="post" onsubmit='encrypt()' style="text-align: center;">
+    <p style="left:auto;">Name</p><input type="text" name="username" value="username"><br><label>asd</label>
+    <p>Password1</p><input type="password" name="password1" id="password1">
+    <p>Password2</p><input type="password" name="password2" id="password2">
+    <p><input type="submit" name="submit"></p>
+</form>
+</div>
 
 </body>
 </html>
