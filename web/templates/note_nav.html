@@ -87,7 +87,7 @@
                 <a class="uk-accordion-title m_category" href="#"><i class="fa fa-book" aria-hidden="true"></i>{{types[0].name}}</a>
                 <div class="uk-accordion-content">
                     <!--内层循环-->
-                    {% for j in types[0].the_notes %}
+                    {% for j in types[0].the_notes|reverse %}
                     <h2 style="display:inline"><i class="fa fa-bookmark m_notehead" aria-hidden="true"></i>{{j.name}}</h2>
                     <p style="display:inline">{{j.time}}</p>
                     <p>{{j.describe}}</p>

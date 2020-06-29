@@ -46,6 +46,7 @@ class comments(db.Model):
 def note_nav():
     all_types = categories.query.order_by('id')
     newest_notes = notes.query.order_by('time')[-10:]
+    newest_notes.reverse()
 
     return render_template('note_nav.html',types=all_types,newest=newest_notes)
 
