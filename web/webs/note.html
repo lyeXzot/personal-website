@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="/static/image/head.jpg">
+    <link rel="stylesheet" href="/static/css/uikit.min.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/css/base.css"/>
+    <script src="/static/js/uikit.min.js"></script>
+    <script src="/static/js/uikit-icons.min.js"></script>
+
+</head>
+<body>
+        <!--导航栏-->
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;background-color:rgba(0,0,0, 0.7);">
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li><span class="m_mark">LYE</span></li>
+                        <li><a href="/webs/index.html"><i class="fa fa-certificate" style="opacity: 0.7;" aria-hidden="true"></i><span class="m_title">首页</span></a></li>
+                        <li class="uk-active"><a href="/logic/note_nav/"><i class="fa fa-sticky-note" aria-hidden="true"></i><span class="m_title">笔记</span></a></li>
+                        <li><a href="/webs/mc.html"><i class="fa fa-gamepad" aria-hidden="true"></i><span class="m_title">MC</span></a></li>
+                        <li><a href="/webs/album.html"><i class="fa fa-picture-o" aria-hidden="true"></i><span class="m_title">相册</span></a></li>
+                        <li><a href="/webs/about.html"><i class="fa fa-circle-o" aria-hidden="true"></i><span class="m_title">关于</span></a></li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right" style="float:right;">
+                    <div>
+                        <a class="uk-navbar-toggle" uk-search-icon href="#"></a>
+                        <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
+                            <form class="uk-search uk-search-navbar uk-width-1-1" action="/logic/search">
+                                <input class="uk-search-input" type="search" placeholder="Search..." autofocus>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <ul class="uk-navbar-nav">
+                        <li><a href="/logic/register/"><span class="m_login">注册</span></a></li>
+                        <li><a href="/logic/signin/"><span class="m_login">登录</span></a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!--左部信息-->
+        <div style="width: 16%;height:auto;left: 2%;top: 120px;position: absolute;margin: 0px;">
+            <div style="border-radius: 10px;border-radius: 10px;border: 2px rgb(205,233,207) solid;width: 100%;"><img src="/static/image/photo.jpg" style="border-radius: 8px;"></div>
+            
+            <div style="height: 5px;width: 100%;"></div>
+
+            <div style="font-size: 20px;width: 100%;border-radius: 10px;border-radius: 10px;border: 1.5px rgb(205,233,207) solid;">
+                <span style="font-size: 22px;"><i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 22px;line-height: 100%;"></i>linyier<i class="fa fa-mars" aria-hidden="true"></i>male</span><br>
+                <span><i class="fa fa-university" aria-hidden="true"></i>华中科技大学</span><br>
+                <span><i class="fa fa-location-arrow fa-lg" aria-hidden="true"></i>中国-福建</span>
+            </div>
+            <hr>
+            <div style="width: 100%;border-radius: 10px;border-radius: 10px;border: 1.5px rgb(205,233,207) solid;margin: 0px;">
+            <h2 style="border-bottom: 1px rgb(205,233,207) solid;margin: 3px;">· Contact me</h2>
+            <p><i class="fa fa-qq" aria-hidden="true"></i>QQ:1550230773</p>
+            <p><i class="fa fa-github" aria-hidden="true"></i> github:linyier-zot</p>
+            <p><i style="margin: 7px;"><img src="/static/image/bili.jpg" width=20px></i> bilibili:88500169</p>
+            </div>
+            <hr>     
+            <div class="m_list">
+                <h2>· 最新上传</h2>
+                <!--循环-->
+                {% for i in newest %}
+                <a href="/logic/note/{{i.id}}">
+                    <span> {{i.type_in_notes.name}}</span>
+                    <h5>{{i.name}}</h5>
+                    <p>{{i.time}}</p>
+                </a>
+                {% endfor %}
+            </div>
+            
+
+        </div>
+
+        <div class='m_note_container_big'>
+            <div class="m_note">
+                <article class="uk-article">
+
+                    <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{the_note.name}}</a></h1>
+                
+                    <p class="uk-article-meta">Written by linyier time:{{the_note.time}} category: <a href="#">{{the_note.type_in_notes.name}}</a></p>
+                
+                    <p class="uk-text-lead">{{the_note.describe}}</p>
+                    {{the_note.content}}
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class=WordSection1 style='layout-grid:15.6pt'>
+
+                        <p class=MsoNormal align=left style='text-align:left'><span
+                        class=MsoCommentReference><b><span lang=EN-US style='font-size:14.0pt'>2.</span></b></span><span
+                        class=MsoCommentReference><b><span style='font-size:14.0pt;font-family:宋体'>数据集说明</span></b></span></p>
+                        
+                        <p class=MsoNormal align=left style='margin-left:21.0pt;text-align:left'><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>依照普遍的机器学习实验方法，按</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>8</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>：</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>2</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>分成训练集和测试集。因为如果将</span></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left'><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>训练集当测试集，显然模型会获得较高的准确率，但实际上对于训练集外的数据则效果不佳，即过拟合状况。因此直接从数据集中划分一部分出来作为测试集。</span></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left'><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>数据集的格式如图：</span></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left'><span
+                        class=MsoCommentReference><b><span lang=EN-US style='font-size:12.0pt'><img
+                        width=554 height=145 id="图片 1" src="人工智能报告.files/image001.png"></span></b></span></p>
+                        
+                        <p class=MsoNormal align=center style='text-align:center'><span
+                        class=MsoCommentReference><b><span style='font-family:宋体'>图</span><span
+                        lang=EN-US>1</span></b></span></p>
+                        
+                        <p class=MsoNormal><span class=MsoCommentReference><b><span lang=EN-US>       </span></b></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>数据集的三列为</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>ID</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>、</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>Label</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>、</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>Email</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>：</span></span></p>
+                        
+                        <p class=MsoNormal><span class=MsoCommentReference><span lang=EN-US
+                        style='font-size:12.0pt'>              ID</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>：数据的唯一标识。</span></span></p>
+                        
+                        <p class=MsoNormal><span class=MsoCommentReference><span lang=EN-US
+                        style='font-size:12.0pt'>              Label: </span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>标识数据为是否为垃圾邮件，</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>ham</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>为正常邮件，</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>spam</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>为垃圾邮件。</span></span></p>
+                        
+                        <p class=MsoNormal><span class=MsoCommentReference><span lang=EN-US
+                        style='font-size:12.0pt'>              Email: </span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>邮件内容。</span></span></p>
+                        
+                        <p class=MsoNormal><span class=MsoCommentReference><span lang=EN-US
+                        style='font-size:12.0pt'>       </span></span><span style='font-size:12.0pt;
+                        font-family:宋体'>总共</span><span lang=EN-US style='font-size:12.0pt'>4458</span><span
+                        style='font-size:12.0pt;font-family:宋体'>条数据，其中正常邮件</span><span lang=EN-US
+                        style='font-size:12.0pt'>3866</span><span style='font-size:12.0pt;font-family:
+                        宋体'>条，垃圾邮件</span><span lang=EN-US style='font-size:12.0pt'>592</span><span
+                        style='font-size:12.0pt;font-family:宋体'>条。</span></p>
+                        
+                        <p class=MsoNormal><span class=MsoCommentReference><span lang=EN-US
+                        style='font-size:12.0pt'>&nbsp;</span></span></p>
+                        
+                        <p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt'><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:14.0pt;font-family:
+                        Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span></span><span
+                        class=MsoCommentReference><b><span lang=EN-US style='font-size:14.0pt'>3.</span></b></span><span
+                        class=MsoCommentReference><b><span style='font-size:14.0pt;font-family:宋体'>数据集处理</span></b></span></p>
+                        
+                        <p class=MsoNormal style='text-indent:21.0pt'><span class=MsoCommentReference><span
+                        style='font-size:12.0pt;font-family:宋体'>首先便是去停用词，因为邮件分类属于自然语言处理的范畴，先进行去停用词的操作。</span></span></p>
+                        
+                        <p class=MsoNormal style='text-indent:21.0pt'><span class=MsoCommentReference><span
+                        style='font-size:12.0pt;font-family:宋体'>停用词指在信息检索中，为节省存储空间和提高搜索效率，在处理自然语言数据（或文本）之前或之后会自动过滤掉某些字或词，这些字或词即被称为</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>Stop Words</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>（停用词）。这些停用词都是人工输入、非自动化生成的，生成后的停用词会形成一个停用词表。</span></span></p>
+                        
+                        <p class=MsoNormal style='text-indent:21.0pt'><span class=MsoCommentReference><span
+                        style='font-size:12.0pt;font-family:宋体'>通过</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>python</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>的</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>nltk</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>包进行停用词的下载：</span></span></p>
+                        
+                        <p class=MsoNormal><span class=MsoCommentReference><span lang=EN-US
+                        style='font-size:12.0pt'><img width=554 height=120 id="图片 3"
+                        src="人工智能报告.files/image002.png"></span></span></p>
+                        
+                        <p class=MsoNormal align=center style='text-align:center'><span
+                        class=MsoCommentReference><b><span style='font-family:宋体'>图</span><span
+                        lang=EN-US>2</span></b></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt'><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>打开显示的路径后可以通过记事本查看英语的停用词，可以发现主要是人称代词、介词等重复率较高，但对文意的表示作用较小的词，去除后能够一定程度提高模型的训练速度和效果。然后将</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>nltk_data</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>文件夹移至项目的虚拟环境中。</span></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left'><span
+                        class=MsoCommentReference><b><span lang=EN-US><img width=535 height=422
+                        id="图片 4" src="人工智能报告.files/image003.png"></span></b></span></p>
+                        
+                        <p class=MsoNormal align=center style='text-align:center'><span
+                        class=MsoCommentReference><b><span style='font-family:宋体'>图</span><span
+                        lang=EN-US>3</span></b></span></p>
+                        
+                        <p class=MsoNormal><span class=MsoCommentReference><b><span lang=EN-US
+                        style='font-size:12.0pt'>&nbsp;</span></b></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt'><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>以</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>CBOW</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>模型中层次化的</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>softmax</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>为例，</span></span><span
+                        class=MsoCommentReference><span lang=EN-US style='font-size:12.0pt'>CBOW</span></span><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>模型在上下文已知的情况下，预测当前词出现的概率。上下文的选取采用窗口方式，即只将当前词窗口范围内的词作为上下文。中心词概率公式：</span></span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif'><img
+                        width=344 height=21 src="人工智能报告.files/image004.png"></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt'><span
+                        lang=EN-US style='font-size:12.0pt'>CBOW</span><span style='font-size:12.0pt;
+                        font-family:宋体'>模型去掉了最耗时的隐层，从输入层到隐层的操作直接对上下文词向量进行求和得到。从隐层到输出层则利用上下文词向量和做为输入，输出的是窗口中心位置所有词出现的概率。利用</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=62 height=21
+                        src="人工智能报告.files/image005.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>公式</span><span lang=EN-US style='font-size:12.0pt'>(</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:12.0pt'><img width=61 height=42
+                        src="人工智能报告.files/image006.png"></span><span lang=EN-US style='font-size:12.0pt'>)</span><span
+                        style='font-size:12.0pt;font-family:宋体'>求中心词概率：</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif'><img
+                        width=243 height=62 src="人工智能报告.files/image007.png"></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                        style='font-size:12.0pt'>       </span><span style='font-size:12.0pt;
+                        font-family:宋体'>其中，</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=54 height=21
+                        src="人工智能报告.files/image008.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>表示上下文词向量和，</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=10 height=21
+                        src="人工智能报告.files/image009.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>表示词表，</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=18 height=21
+                        src="人工智能报告.files/image010.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>表示中心词，</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=23 height=21
+                        src="人工智能报告.files/image011.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>表示能量函数。</span><span lang=EN-US style='font-size:12.0pt'>CBOW</span><span
+                        style='font-size:12.0pt;font-family:宋体'>采用哈夫曼树对词进行分类，中心词的概率进一步表示为：</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif'><img
+                        width=416 height=62 src="人工智能报告.files/image012.png"></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt'><span
+                        style='font-size:12.0pt;font-family:宋体'>其中，</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=52 height=21
+                        src="人工智能报告.files/image013.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>为窗口内词的词向量的加权平均，</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=14 height=21
+                        src="人工智能报告.files/image014.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>为结点</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=6 height=21
+                        src="人工智能报告.files/image015.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>的结点向量，</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=23 height=21
+                        src="人工智能报告.files/image016.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>为神经网络激活函数。从公式中可以看出，中心词的概率是从根节点到词所在的叶节点所走过路径概率的乘积。对中心词概率做极大似然估计，可得到模型的损失函数。损失函数如下：</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif'><img
+                        width=554 height=62 src="人工智能报告.files/image017.png"></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left'><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=50 height=21
+                        src="人工智能报告.files/image018.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>为结点</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=6 height=21
+                        src="人工智能报告.files/image019.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>的哈夫曼编码，有损失函数后通过梯度下降求得词向量，损失函数中有两个待求参数：词向量</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=52 height=21
+                        src="人工智能报告.files/image013.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>和节点向量</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif;
+                        position:relative;top:3.0pt'><img width=14 height=21
+                        src="人工智能报告.files/image014.png"></span><span style='font-size:12.0pt;
+                        font-family:宋体'>，可以看出，词向量作为语言模型</span><span lang=EN-US style='font-size:12.0pt'>CBOW</span><span
+                        style='font-size:12.0pt;font-family:宋体'>训练参数的副产物。</span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                        style='font-size:12.0pt'>&nbsp;</span></p>
+                        
+                        <p class=MsoListParagraph align=left style='margin-left:21.0pt;text-align:left;
+                        text-indent:-21.0pt'><span class=MsoCommentReference><span lang=EN-US
+                        style='font-size:14.0pt;font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+                        </span></span></span><span class=MsoCommentReference><b><span lang=EN-US
+                        style='font-size:14.0pt'>5.</span></b></span><span class=MsoCommentReference><b><span
+                        style='font-size:14.0pt;font-family:宋体'>模型原理</span></b></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt'><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>分类准确率可能会下降，并衍生出降低独立性假设的算法，例如</span></span><span
+                        lang=EN-US style='font-size:12.0pt'>TAN(tree augmented Bayes network)</span><span
+                        style='font-size:12.0pt;font-family:宋体'>算法。</span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt'><span
+                        style='font-size:12.0pt;font-family:宋体'>核心公式——贝叶斯公式</span><span lang=EN-US
+                        style='font-size:12.0pt'>:</span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif'><img
+                        width=155 height=42 src="人工智能报告.files/image020.png"></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left;text-indent:21.0pt'><span
+                        class=MsoCommentReference><span style='font-size:12.0pt;font-family:宋体'>用更清晰的表达式则为：</span></span><span
+                        lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman",serif'><img
+                        width=265 height=62 src="人工智能报告.files/image021.png"></span></p>
+                        
+                        <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                        style='font-size:12.0pt;font-family:宋体'>&nbsp;</span></p>
+                        
+                        <table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+                         style='border-collapse:collapse;border:none'>
+                         <tr>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+                          12.0pt;font-family:宋体'>模型<span lang=EN-US>1</span></span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+                          12.0pt;font-family:宋体'>模型<span lang=EN-US>2</span></span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+                          12.0pt;font-family:宋体'>模型<span lang=EN-US>3</span></span></p>
+                          </td>
+                          <td width=85 valign=top style='width:63.8pt;border:solid windowtext 1.0pt;
+                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+                          12.0pt;font-family:宋体'>投票模型</span></p>
+                          </td>
+                          <td width=168 valign=top style='width:126.15pt;border:solid windowtext 1.0pt;
+                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+                          12.0pt;font-family:宋体'>概率</span></p>
+                          </td>
+                          <td width=92 valign=top style='width:69.15pt;border:solid windowtext 1.0pt;
+                          border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+                          12.0pt;font-family:宋体'>输出结果概率</span></p>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=85 valign=top style='width:63.8pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=168 valign=top style='width:126.15pt;border-top:none;border-left:
+                          none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.4*0.4*0.4=0.064</span></p>
+                          </td>
+                          <td width=92 rowspan=4 valign=top style='width:69.15pt;border-top:none;
+                          border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.352</span></p>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=85 valign=top style='width:63.8pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=168 valign=top style='width:126.15pt;border-top:none;border-left:
+                          none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.6*0.4*0.4=0.096</span></p>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=85 valign=top style='width:63.8pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=168 valign=top style='width:126.15pt;border-top:none;border-left:
+                          none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.4*0.6*0.4=0.096</span></p>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=85 valign=top style='width:63.8pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=168 valign=top style='width:126.15pt;border-top:none;border-left:
+                          none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.4*0.4*0.6=0.096</span></p>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=85 valign=top style='width:63.8pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=168 valign=top style='width:126.15pt;border-top:none;border-left:
+                          none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.4*0.6*0.6=0.144</span></p>
+                          </td>
+                          <td width=92 rowspan=4 valign=top style='width:69.15pt;border-top:none;
+                          border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.648</span></p>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=85 valign=top style='width:63.8pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=168 valign=top style='width:126.15pt;border-top:none;border-left:
+                          none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.6*0.4*0.6=0.144</span></p>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0</span></p>
+                          </td>
+                          <td width=85 valign=top style='width:63.8pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=168 valign=top style='width:126.15pt;border-top:none;border-left:
+                          none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.6*0.6*0.4=0.144</span></p>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td width=69 valign=top style='width:51.9pt;border:solid windowtext 1.0pt;
+                          border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=69 valign=top style='width:51.9pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=85 valign=top style='width:63.8pt;border-top:none;border-left:none;
+                          border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>1</span></p>
+                          </td>
+                          <td width=168 valign=top style='width:126.15pt;border-top:none;border-left:
+                          none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+                          padding:0cm 5.4pt 0cm 5.4pt'>
+                          <p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+                          style='font-size:12.0pt'>0.6*0.6*0.6=0.216</span></p>
+                          </td>
+                         </tr>
+                        </table>
+                        
+                        <p class=MsoNormal align=center style='text-align:center'><span
+                        style='font-size:18.0pt;font-family:黑体;color:white'>附</span><span
+                        style='font-size:18.0pt;font-family:黑体'> 录</span></p>
+                        
+                        <p class=MsoNormal><span style='font-size:12.0pt;font-family:宋体'>代码链接：</span><span
+                        lang=EN-US><a href="https://github.com/linyier-zot/junk_mail_classify"><i><span
+                        style='font-size:12.0pt'>https://github.com/linyier-zot/junk_mail_classify</span></i></a></span></p>
+                        
+                        </div>
+                </article>
+            </div>
+            
+            <hr>
+            <hr>
+
+            <div class='m_comments'>
+                <head>所有评论</head><br><br>
+                {% for comment in comments %}
+                <article class="uk-comment">
+                    <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-comment-avatar" src="/static/user_images/{{comment.user_id}}.jpg" width="80" height="80" alt="">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{comment.the_user.name}}</a></h4>
+                            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                                <li><a href="#">{{comment.title}}</a></li>
+                            </ul>
+                        </div>
+                    </header>
+                    <div class="uk-comment-body">
+                        <p>{{comment.content}}</p>
+                    </div>
+                </article>
+                <hr>
+                {% else %}
+                <article class="uk-comment">
+                    <div class="uk-comment-body">
+                        <p style="text-align: center;">暂无评论，来做第一个呗</p>
+                    </div>
+                </article>
+                <hr>
+                {% endfor %}
+            </div>
+            
+        </div>
+
+        <div class='m_add_comment'>
+            <form style="margin:7px" action="/logic/note_nav/">
+                <fieldset class="uk-fieldset">
+            
+                    <legend class="uk-legend">评论</legend>
+            
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" name="title" placeholder="标题">
+                    </div>
+            
+                    <div class="uk-margin">
+                        <textarea class="uk-textarea" rows="5" name="content" placeholder="内容..."></textarea>
+                    </div>
+
+                    <button class="uk-button uk-button-default" style="position: relative;top: -7px;">Submit</button>
+
+            
+                </fieldset>
+            </form>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search</title>
+        <meta charset="utf-8">
+        <link rel="icon" href="/static/image/head.jpg">
+        <link rel="stylesheet" href="/static/css/uikit.min.css" />
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="/static/css/base.css"/>
+        <script src="/static/js/uikit.min.js"></script>
+        <script src="/static/js/uikit-icons.min.js"></script>
+
+    </head>
+    <body>
+        <!--导航栏-->
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;background-color:rgba(0,0,0, 0.7);">
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li><span class="m_mark">LYE</span></li>
+                        <li><a href="/webs/index.html"><i class="fa fa-certificate" style="opacity: 0.7;" aria-hidden="true"></i><span class="m_title">首页</span></a></li>
+                        <li class="uk-active"><a href="/logic/note_nav/"><i class="fa fa-sticky-note" aria-hidden="true"></i><span class="m_title">笔记</span></a></li>
+                        <li><a href="/webs/mc.html"><i class="fa fa-gamepad" aria-hidden="true"></i><span class="m_title">MC</span></a></li>
+                        <li><a href="/webs/album.html"><i class="fa fa-picture-o" aria-hidden="true"></i><span class="m_title">相册</span></a></li>
+                        <li><a href="/webs/about.html"><i class="fa fa-circle-o" aria-hidden="true"></i><span class="m_title">关于</span></a></li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right" style="float:right;">
+                    <div>
+                        <a class="uk-navbar-toggle" uk-search-icon href="#"></a>
+                        <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
+                            <form class="uk-search uk-search-navbar uk-width-1-1" action="/logic/search/" method="post">
+                                <input class="uk-search-input" type="search" name="key" placeholder="Search..." autofocus>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <ul class="uk-navbar-nav">
+                        <li><a href="/logic/register/"><span class="m_login">注册</span></a></li>
+                        <li><a href="/logic/signin/"><span class="m_login">登录</span></a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!--左部信息-->
+        <div style="width: 16%;height:auto;left: 2%;top: 40px;position: relative;margin: 0px;">
+            <div style="border-radius: 10px;border-radius: 10px;border: 2px black solid;width: 100%;"><img src="/static/image/photo.jpg" style="border-radius: 8px;"></div>
+            <div style="height: 5px;width: 100%;"></div>
+            <div style="font-size: 20px;width: 100%;border-radius: 10px;border-radius: 10px;border: 1.5px black solid;">
+                <span style="font-size: 22px;"><i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 22px;line-height: 100%;"></i>linyier<i class="fa fa-mars" aria-hidden="true"></i>male</span><br>
+                <span><i class="fa fa-university" aria-hidden="true"></i>华中科技大学</span><br>
+                <span><i class="fa fa-location-arrow fa-lg" aria-hidden="true"></i>中国-福建</span>
+            </div>     
+            <div style="height: 50px;width: 100%;"></div>
+            <div class="m_list">
+                <h2>· 最新上传</h2>
+                <!--循环-->
+                {% for i in newest %}
+                <a href="/logic/note/{{i.id}}">
+                    <span> {{i.type_in_notes.name}}</span>
+                    <h5>{{i.name}}</h5>
+                    <p>{{i.time}}</p>
+                </a>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <!--笔记内容-->
+        <ul uk-accordion style="width:75%;left: 22%;position:absolute;top: 100px;height: 2000px;">
+            
+            <div class="uk-alert-success" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p>共搜索到{{num}}条与{{search_key}}有关的结果。</p>
+            </div>
+            <!--内层循环-->
+            {% for i in result %}
+            <div class="uk-accordion-content">
+                <h2 style="display:inline"><i class="fa fa-bookmark m_notehead" aria-hidden="true"></i>{{i.name}}</h2>
+                <p style="display:inline">{{i.time}}</p>
+                <p>{{i.describe}}</p>
+                <a href="/logic/note/{{i.id}}">readmore</a>
+                <hr>
+            </div>
+            {% endfor %}
+
+
+            <a href="#" uk-totop uk-scroll style="left:95%;position: relative;"></a>
+        </ul>
+
+        
+    </body>
+</html>
