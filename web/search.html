@@ -3,7 +3,7 @@
     <head>
         <title>Search</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="static/image/head.jpg">
         <link rel="stylesheet" href="static/css/uikit.min.css" />
         <link rel="stylesheet" href="static/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="static/css/base.css"/>
@@ -14,13 +14,14 @@
     <body>
         <!--导航栏-->
         <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-            <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+            <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;background-color:rgba(0,0,0, 0.7);">
                 <div class="uk-navbar-left">
                     <ul class="uk-navbar-nav">
                         <li><span class="m_mark">LYE</span></li>
                         <li><a href="index.html"><i class="fa fa-certificate" style="opacity: 0.7;" aria-hidden="true"></i><span class="m_title">首页</span></a></li>
-                        <li class="uk-active"><a href="note_nav.html"><i class="fa fa-sticky-note" aria-hidden="true"></i><span class="m_title">笔记</span></a></li>
+                        <li class="uk-active"><a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i><span class="m_title">笔记</span></a></li>
                         <li><a href="mc.html"><i class="fa fa-gamepad" aria-hidden="true"></i><span class="m_title">MC</span></a></li>
+                        <li><a href="album.html"><i class="fa fa-picture-o" aria-hidden="true"></i><span class="m_title">相册</span></a></li>
                         <li><a href="about.html"><i class="fa fa-circle-o" aria-hidden="true"></i><span class="m_title">关于</span></a></li>
                     </ul>
                 </div>
@@ -28,17 +29,16 @@
                     <div>
                         <a class="uk-navbar-toggle" uk-search-icon href="#"></a>
                         <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
-                            <form class="uk-search uk-search-navbar uk-width-1-1">
+                            <form class="uk-search uk-search-navbar uk-width-1-1" action="/logic/search">
                                 <input class="uk-search-input" type="search" placeholder="Search..." autofocus>
                             </form>
                         </div>
                     </div>
                 </div>
                 <ul class="uk-navbar-nav">
-                        <li><a href="form.html"><span class="m_login">注册</span></a></li>
-                        <li><a href="form.html"><span class="m_login">登录</span></a></li>
+                        <li><a href="register.html"><span class="m_login">注册</span></a></li>
+                        <li><a href="signin.html"><span class="m_login">登录</span></a></li>
                 </ul>
-
             </nav>
         </div>
         
@@ -74,7 +74,7 @@
             
             <div class="uk-alert-success" uk-alert>
                 <a class="uk-alert-close" uk-close></a>
-                <p>搜索到{{num}}条与{{search_key}}有关的结果。</p>
+                <p>共搜索到{{num}}条与{{search_key}}有关的结果。</p>
             </div>
             <!--内层循环-->
             <div class="uk-accordion-content">

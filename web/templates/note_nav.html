@@ -3,12 +3,12 @@
     <head>
         <title>Note</title>
         <meta charset="utf-8">
-        <link rel="icon" href="static/image/head.jpg">
-        <link rel="stylesheet" href="static/css/uikit.min.css" />
-        <link rel="stylesheet" href="static/css/font-awesome.min.css"/>
-        <link rel="stylesheet" href="static/css/base.css"/>
-        <script src="static/js/uikit.min.js"></script>
-        <script src="static/js/uikit-icons.min.js"></script>
+        <link rel="icon" href="/static/image/head.jpg">
+        <link rel="stylesheet" href="/static/css/uikit.min.css" />
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="/static/css/base.css"/>
+        <script src="/static/js/uikit.min.js"></script>
+        <script src="/static/js/uikit-icons.min.js"></script>
 
     </head>
     <body>
@@ -18,7 +18,7 @@
                 <div class="uk-navbar-left">
                     <ul class="uk-navbar-nav">
                         <li><span class="m_mark">LYE</span></li>
-                        <li><a href="index.html"><i class="fa fa-certificate" style="opacity: 0.7;" aria-hidden="true"></i><span class="m_title">首页</span></a></li>
+                        <li><a href="/index"><i class="fa fa-certificate" style="opacity: 0.7;" aria-hidden="true"></i><span class="m_title">首页</span></a></li>
                         <li class="uk-active"><a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i><span class="m_title">笔记</span></a></li>
                         <li><a href="/mc/"><i class="fa fa-gamepad" aria-hidden="true"></i><span class="m_title">MC</span></a></li>
                         <li><a href="album.html"><i class="fa fa-picture-o" aria-hidden="true"></i><span class="m_title">相册</span></a></li>
@@ -42,10 +42,16 @@
             </nav>
         </div>
         
+
+        <div class="uk-alert-success" uk-alert style="position:absolute;top:5%;left:30%;z-index:99999">
+            <a class="uk-alert-close" uk-close></a>
+            <p>最近才知道写笔记，所以暂未上传内容上去T﹏T，内容全为测试用</p>
+        </div>
+
         <!--左部信息-->
         <div style="width: 16%;height:auto;left: 2%;top: 40px;position: relative;margin: 0px;">
-            <div style="border-radius: 10px;border-radius: 10px;border: 2px rgb(205,233,207) solid;width: 100%;"><img src="static/image/photo.jpg" style="border-radius: 8px;"></div>
-            
+            <div style="border-radius: 10px;border-radius: 10px;border: 2px rgb(205,233,207) solid;width: 100%;"><img src="/static/image/photo.jpg" style="border-radius: 8px;"></div>
+
             <div style="height: 5px;width: 100%;"></div>
 
             <div style="font-size: 20px;width: 100%;border-radius: 10px;border-radius: 10px;border: 1.5px rgb(205,233,207) solid;">
@@ -58,55 +64,52 @@
             <h2 style="border-bottom: 1px rgb(205,233,207) solid;margin: 3px;">· Contact me</h2>
             <p><i class="fa fa-qq" aria-hidden="true"></i>QQ:1550230773</p>
             <p><i class="fa fa-github" aria-hidden="true"></i> github:linyier-zot</p>
-            <p><i style="margin: 7px;"><img src="static/image/bili.jpg" width=20px></i> bilibili:88500169</p>
+            <p><i style="margin: 7px;"><img src="/static/image/bili.jpg" width=20px></i> bilibili:88500169</p>
             </div>
-            <hr>     
+            <hr>
             <div class="m_list">
                 <h2>· 最新上传</h2>
                 <!--循环-->
-                <a href="/logic/blog/{{blog_id}}">
-                    <h5>{{biaoti}}</h5>
-                    <span>{{leibie}}</span>
-                    <p>{{time}}</p>
+                {% for i in newest %}
+                <a href="/logic/note/{{i.id}}">
+                    <span> {{i.type_in_notes.name}}</span>
+                    <h5>{{i.name}}</h5>
+                    <p>{{i.time}}</p>
                 </a>
-                <a href="/logic/blog/{{blog_id}}">
-                    <h5>{{biaoti}}</h5>
-                    <span>{{leibie}}</span>
-                    <p>{{time}}</p>
-                </a>
+                {% endfor %}
             </div>
-            
-
         </div>
-
 
         <!--笔记内容-->
         <ul uk-accordion style="width:75%;left: 22%;position:absolute;top: 100px;">
-            <!--外层循环-->
             <li class="uk-open">
-                <a class="uk-accordion-title m_category" href="#"><i class="fa fa-book" aria-hidden="true"></i>机器学习</a>
-                <!--内层循环-->
+                <a class="uk-accordion-title m_category" href="#"><i class="fa fa-book" aria-hidden="true"></i>{{types[0].name}}</a>
                 <div class="uk-accordion-content">
-                    <h2 style="display:inline"><i class="fa fa-bookmark m_notehead" aria-hidden="true"></i>{{title}}</h2>
-                    <p style="display:inline">{{metadata}}</p>
-                    <p>{{content}}</p>
+                    <!--内层循环-->
+                    {% for j in types[0].the_notes %}
+                    <h2 style="display:inline"><i class="fa fa-bookmark m_notehead" aria-hidden="true"></i>{{j.name}}</h2>
+                    <p style="display:inline">{{j.time}}</p>
+                    <p>{{j.describe}}</p>
                     <a>readmore</a>
                     <hr>
+                    {% endfor %}
                 </div>
             </li>
-            
+            {% for i in types[1:]: %}
             <li>
-                <a class="uk-accordion-title m_category" href="#"><i class="fa fa-book" aria-hidden="true"></i>算法</a>
+                <a class="uk-accordion-title m_category" href="#"><i class="fa fa-book" aria-hidden="true"></i>{{i.name}}</a>
                 <div class="uk-accordion-content">
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
+                    <!--内层循环-->
+                    {% for j in i.the_notes %}
+                    <h2 style="display:inline"><i class="fa fa-bookmark m_notehead" aria-hidden="true"></i>{{j.name}}</h2>
+                    <p style="display:inline">{{j.time}}</p>
+                    <p>{{j.describe}}</p>
+                    <a>readmore</a>
+                    <hr>
+                    {% endfor %}
                 </div>
             </li>
-            <li>
-                <a class="uk-accordion-title m_category" href="#"><i class="fa fa-book" aria-hidden="true"></i>tips</a>
-                <div class="uk-accordion-content">
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
-                </div>
-            </li>
+            {% endfor %}
 
             <a href="#" uk-totop uk-scroll style="left:95%;position: relative;"></a>
         </ul>

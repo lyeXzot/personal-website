@@ -24,8 +24,8 @@ i{
 .m_list h2{
     border-bottom: 1px rgb(205,233,207) solid;margin: 3px;
 }
-.m_list h5{
-    margin: 5px;display: inline;
+.m_list a h5{
+    margin: 5px;display: inline;font-size:22px;
 }
 .m_list span{
     margin: 5px;
