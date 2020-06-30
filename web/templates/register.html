@@ -4,15 +4,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Register</title>
-
   <link rel="stylesheet" href="/static/css/star.css">
+  <link rel="stylesheet" href="/static/css/uikit.css">
+  <link rel="stylesheet" href="/static/css/animate.css" />
+  <script src="/static/js/sha1.js"></script>
+  <script src="/static/js/uikit.min.js"></script>
+  <script src="/static/js/uikit-icons.min.js"></script>
+
 
 
 </head>
 <body>
 
 <div class="stars-wrapper">
-  <svg class="extras" width="100%" height="100%" preserveAspectRatio="none">
+  <svg width="100%" height="100vh" preserveAspectRatio="none">
     <defs>
       <radialGradient id="comet-gradient" cx="0" cy=".5" r="0.5">
         <stop offset="0%" stop-color="rgba(255,255,255,.8)"></stop>
@@ -31,15 +36,57 @@
   </svg>
 </div>
 
-<div style="position:absolute;width:28%;height:60%;background-color:rgb(255, 255, 255, 0.5);left:35%;top:15%;color: black;border-radius: 10px;">
-  <h1 style="text-decoration:overline;text-align: center;">欢迎注册</h1> 
-  <form action="/logic" method="post" onsubmit='encrypt()' style="text-align: center;">
-    <p style="left:auto;">Name</p><input type="text" name="username" value="username"><br><label>asd</label>
-    <p>Password1</p><input type="password" name="password1" id="password1">
-    <p>Password2</p><input type="password" name="password2" id="password2">
-    <p><input type="submit" name="submit"></p>
-</form>
-</div>
+<div style="position:absolute;width:28%;height:60%;background-color:rgb(255, 255, 255, 0.5);left:36%;top:15%;color: black;border-radius: 10px;">
+  <h1 style="text-decoration:overline;text-align: center;">欢迎注册</h1>
+  <div style="margin:7px">
+      <form action="/logic/register/" method="post" onsubmit='encrypt()'>
+        <fieldset class="uk-fieldset">
 
+          <div class="uk-margin">
+            <input class="uk-input" type="text" name="username" placeholder="用户名" Pattern ="^[a-zA-Z0-9_-]{4,16}$" required>
+            <div class="uk-text-meta uk-text-emphasis">4到16位(字母,数字,下划线,减号)</div>
+          </div>
+          <div class="uk-margin">
+            <input class="uk-input" type="email" name="email" placeholder="邮箱" required>
+          </div>
+          <div class="uk-margin">
+            <input class="uk-input" type="password" name="password1" id="password1" placeholder="设置密码" pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$" required>
+            <div class="uk-text-meta uk-text-emphasis">至少包含数字和英文,长度6-20</div>
+          </div>
+          <div class="uk-margin">
+            <input class="uk-input" type="password" name="password2" onblur='check()' id="password2" placeholder="确认密码" pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$" required>
+          </div>
+          <div class="uk-margin">
+            <input class="uk-input" type="submit">
+          </div>
+        </fieldset>
+      </form>
+  </div>
+</div>
+{% if get_flashed_messages() %}
+<div class="uk-alert-danger animate__animated animate__fadeInDown animate__fast" uk-alert style="position:absolute;top: 10%;left: 34%;width: 30%;">
+    <a class="uk-alert-close" uk-close></a>
+    <p>{{get_flashed_messages()}}</p>
+</div>
+{% endif %}
 </body>
+
+<script>
+  function check()  {
+        passwd1 = document.getElementById('password1').value;
+        passwd2 = document.getElementById('password2').value;
+        if(passwd1==""){
+          alert('密码不能为空');
+        }
+        if(passwd1!=passwd2){
+          document.getElementById('password2').value="";
+          alert('两次密码不一致');
+        }
+  }
+  function encrypt() {
+        // 将密码框的值修改为sha1加密后的
+        document.getElementById('password1').value = sha1(document.getElementById('password1').value);
+        document.getElementById('password2').value = sha1(document.getElementById('password2').value);
+    }
+</script>
 </html>

@@ -128,10 +128,10 @@
         </div>
 
         <div class='m_add_comment'>
-            <form style="margin:7px" action="/logic/note_nav/">
+            <form style="margin:7px" action="/logic/add_comment/{{the_note.id}}" method="post">
                 <fieldset class="uk-fieldset">
             
-                    <legend class="uk-legend">评论</legend>
+                    <legend class="uk-legend">写评论</legend>
             
                     <div class="uk-margin">
                         <input class="uk-input" type="text" name="title" placeholder="标题">

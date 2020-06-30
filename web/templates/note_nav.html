@@ -36,13 +36,20 @@
                         </div>
                     </div>
                 </div>
+                {% if the_user %}
+                <div style="height:40px;font-size:35px;margin:10px;position:relative;right:10px;">asdasdroot
+                </div>
+                {% else %}
                 <ul class="uk-navbar-nav">
                         <li><a href="/logic/register/"><span class="m_login">注册</span></a></li>
                         <li><a href="/logic/signin/"><span class="m_login">登录</span></a></li>
                 </ul>
+                {% endif %}
             </nav>
         </div>
-        
+
+
+
 
         <div class="uk-alert-success animate__animated animate__flipInX" uk-alert style="position:absolute;top:5%;left:30%;z-index:99999">
             <a class="uk-alert-close" uk-close></a>
@@ -101,7 +108,7 @@
                 <a class="uk-accordion-title m_category" href="#"><i class="fa fa-book" aria-hidden="true"></i>{{i.name}}</a>
                 <div class="uk-accordion-content">
                     <!--内层循环-->
-                    {% for j in i.the_notes %}
+                    {% for j in i.the_notes|reverse %}
                     <h2 style="display:inline"><i class="fa fa-bookmark m_notehead" aria-hidden="true"></i>{{j.name}}</h2>
                     <p style="display:inline">{{j.time}}</p>
                     <p>{{j.describe}}</p>

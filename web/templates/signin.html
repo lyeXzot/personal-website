@@ -4,15 +4,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Signin</title>
-
   <link rel="stylesheet" href="/static/css/star.css">
+  <link rel="stylesheet" href="/static/css/uikit.css">
+  <link rel="stylesheet" href="/static/css/animate.css" />
+  <script src="/static/js/sha1.js"></script>
+  <script src="/static/js/uikit.min.js"></script>
+  <script src="/static/js/uikit-icons.min.js"></script>
+
 
 
 </head>
 <body>
 
 <div class="stars-wrapper">
-  <svg class="extras" width="100%" height="100%" preserveAspectRatio="none">
+  <svg width="100%" height="100vh" preserveAspectRatio="none">
     <defs>
       <radialGradient id="comet-gradient" cx="0" cy=".5" r="0.5">
         <stop offset="0%" stop-color="rgba(255,255,255,.8)"></stop>
@@ -31,15 +36,45 @@
   </svg>
 </div>
 
-<div style="position:absolute;width:28%;height:60%;background-color:rgb(255, 255, 255, 0.5);left:35%;top:15%;color: black;border-radius: 10px;">
-  <h1 style="text-decoration:overline;text-align: center;">欢迎注册/登入</h1> 
-  <form action="/login" method="post" onsubmit='encrypt()' style="text-align: center;">
-    <p style="left:auto;">Name</p><input type="text" name="username" value="username"><br><label>asd</label>
-    <p>Password1</p><input type="password" name="password1" id="password1">
-    <p>Password2</p><input type="password" name="password2" id="password2">
-    <p><input type="submit" name="submit"></p>
-</form>
+<div style="position:absolute;width:28%;height:35%;background-color:rgb(255, 255, 255, 0.5);left:36%;top:25%;color: black;border-radius: 10px;">
+  <h1 style="text-align: center;margin:5px">登录</h1>
+  <div class="uk-margin">
+  </div>
+  <div style="margin:7px">
+      <form action="/logic/signin/" method="post" onsubmit='encrypt()'>
+        <fieldset class="uk-fieldset">
+          <div class="uk-margin">
+            <input class="uk-input" type="text" name="username" placeholder="用户名" Pattern ="^[a-zA-Z0-9_-]{4,16}$" required>
+          </div>
+          <div class="uk-margin">
+            <input class="uk-input" type="password" name="password1" id="password1" placeholder="输入密码" pattern="^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$" required>
+          </div>
+          <div class="uk-margin">
+            <input class="uk-input" type="submit">
+          </div>
+        </fieldset>
+      </form>
+  </div>
 </div>
-
+{% if get_flashed_messages() %}
+{% if get_flashed_messages()[0]=='注册成功' %}
+<div class="uk-alert-success animate__animated animate__fadeInDown animate__fast" uk-alert style="position:absolute;top: 10%;left: 34%;width: 30%;">
+    <a class="uk-alert-close" uk-close></a>
+    <p>{{get_flashed_messages()}}</p>
+</div>
+{% else %}
+<div class="uk-alert-danger animate__animated animate__fadeInDown animate__fast" uk-alert style="position:absolute;top: 10%;left: 34%;width: 30%;">
+    <a class="uk-alert-close" uk-close></a>
+    <p>{{get_flashed_messages()}}</p>
+</div>
+{% endif %}
+{% endif %}
 </body>
+
+<script>
+  function encrypt() {
+        // 将密码框的值修改为sha1加密后的
+        document.getElementById('password1').value = sha1(document.getElementById('password1').value);
+    }
+</script>
 </html>

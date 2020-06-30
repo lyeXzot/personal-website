@@ -18,6 +18,10 @@ i{
     font-size: 15px;
     line-height: 100%;
 }
+.m_username{
+    font-size: 15px;
+    line-height: 100%;
+}
 .m_list{
     border-radius: 10px;border: 1.5px rgb(205,233,207) solid;width: 100%;text-align: inherit;
 }
