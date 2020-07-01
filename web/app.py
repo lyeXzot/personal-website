@@ -57,12 +57,17 @@ def note_nav():
     all_types = categories.query.order_by('id')
     newest_notes = notes.query.order_by('time')[-10:]
     newest_notes.reverse()
-
+    the_user = None
     if identify():
         the_user = users.query.filter(users.id == int(request.cookies.get('data')[0])).first()
-        return render_template('note_nav.html', types=all_types, newest=newest_notes, the_user=the_user)
 
-    return render_template('note_nav.html', types=all_types, newest=newest_notes)
+    return render_template('note_nav.html', types=all_types, newest=newest_notes, the_user=the_user)
+
+@app.route('/logic/exit/')
+def exit():
+    resp = make_response(redirect(url_for('note_nav')))
+    resp.delete_cookie('data')
+    return resp
 
 
 @app.route('/logic/note/<int:note_id>')
@@ -70,8 +75,10 @@ def note(note_id):
     the_note = notes.query.filter(notes.id == note_id).first()
     newest_notes = notes.query.order_by('time')[-10:]
     the_comments = comments.query.filter(comments.at_note_id == note_id)
-
-    return render_template('note.html', the_note=the_note, newest=newest_notes, comments=the_comments)
+    the_user = None
+    if identify():
+        the_user = users.query.filter(users.id == int(request.cookies.get('data')[0])).first()
+    return render_template('note.html', the_note=the_note, newest=newest_notes, comments=the_comments, the_user=the_user)
 
 
 @app.route('/logic/search/', methods=['POST'])
@@ -88,7 +95,10 @@ def search():
         if key in i.name.lower():
             result.append(i)
     news = notes.query.order_by('time')[-10:]
-    return render_template('search.html', num=len(result), result=result, search_key=key, newest=news)
+    the_user = None
+    if identify():
+        the_user = users.query.filter(users.id == int(request.cookies.get('data')[0])).first()
+    return render_template('search.html', num=len(result), result=result, search_key=key, newest=news, the_user=the_user)
 
 
 @app.route('/logic/signin/', methods=['GET', 'POST'])
@@ -147,7 +157,18 @@ def register():
 
 @app.route('/logic/add_comment/<int:note_id>', methods=['POST'])
 def add_comment(note_id):
-    return redirect(url_for('note', note_id=note_id))
+    the_user = None
+    if identify():
+        the_user = users.query.filter(users.id == int(request.cookies.get('data')[0])).first()
+        title = request.form['title']
+        content = request.form['content']
+        add_ = comments(user_id=the_user.id, at_note_id=note_id, title=title, content= content, create_time=datetime.datetime.now())
+        db.session.add(add_)
+        db.session.commit()
+        return redirect(url_for('note', note_id=note_id))
+
+    flash("请先注册/登录，若已有账号，<a href='/logic/signin/'>点此进行登录</a>")
+    return redirect(url_for('register'))
 
 
 """验证cookies，是否已登录

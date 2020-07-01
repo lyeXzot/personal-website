@@ -36,10 +36,16 @@
                         </div>
                     </div>
                 </div>
+                {% if the_user %}
+                <div style="height:40px;font-size:35px;margin:10px;position:relative;right:10px;">
+                    {{the_user.name}} <a href="/logic/exit/" style="text-decoration:None;color:grey">退出</a>
+                </div>
+                {% else %}
                 <ul class="uk-navbar-nav">
                         <li><a href="/logic/register/"><span class="m_login">注册</span></a></li>
                         <li><a href="/logic/signin/"><span class="m_login">登录</span></a></li>
                 </ul>
+                {% endif %}
             </nav>
         </div>
         
@@ -100,13 +106,13 @@
                 {% for comment in comments %}
                 <article class="uk-comment">
                     <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
-                        <div class="uk-width-auto">
+                    <!--    <div class="uk-width-auto">
                             <img class="uk-comment-avatar" src="/static/user_images/{{comment.user_id}}.jpg" width="80" height="80" alt="">
-                        </div>
+                        </div>  -->
                         <div class="uk-width-expand">
                             <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{comment.the_user.name}}</a></h4>
                             <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-                                <li><a href="#">{{comment.title}}</a></li>
+                                <li>{{comment.title}}</li>
                             </ul>
                         </div>
                     </header>
@@ -134,11 +140,11 @@
                     <legend class="uk-legend">写评论</legend>
             
                     <div class="uk-margin">
-                        <input class="uk-input" type="text" name="title" placeholder="标题">
+                        <input class="uk-input" type="text" name="title" placeholder="标题" required>
                     </div>
             
                     <div class="uk-margin">
-                        <textarea class="uk-textarea" rows="5" name="content" placeholder="内容..."></textarea>
+                        <textarea class="uk-textarea" rows="5" name="content" placeholder="内容..." required></textarea>
                     </div>
 
                     <button class="uk-button uk-button-default" style="position: relative;top: -7px;">Submit</button>

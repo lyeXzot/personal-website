@@ -37,7 +37,8 @@
                     </div>
                 </div>
                 {% if the_user %}
-                <div style="height:40px;font-size:35px;margin:10px;position:relative;right:10px;">asdasdroot
+                <div style="height:40px;font-size:35px;margin:10px;position:relative;right:10px;">
+                    {{the_user.name}} <a href="/logic/exit/" style="text-decoration:None;color:grey">退出</a>
                 </div>
                 {% else %}
                 <ul class="uk-navbar-nav">
