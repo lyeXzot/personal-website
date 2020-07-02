@@ -63,6 +63,7 @@ def note_nav():
 
     return render_template('note_nav.html', types=all_types, newest=newest_notes, the_user=the_user)
 
+
 @app.route('/logic/exit/')
 def exit():
     resp = make_response(redirect(url_for('note_nav')))
@@ -78,7 +79,8 @@ def note(note_id):
     the_user = None
     if identify():
         the_user = users.query.filter(users.id == int(request.cookies.get('data')[0])).first()
-    return render_template('note.html', the_note=the_note, newest=newest_notes, comments=the_comments, the_user=the_user)
+    return render_template('note.html', the_note=the_note, newest=newest_notes, comments=the_comments,
+                           the_user=the_user)
 
 
 @app.route('/logic/search/', methods=['POST'])
@@ -98,7 +100,8 @@ def search():
     the_user = None
     if identify():
         the_user = users.query.filter(users.id == int(request.cookies.get('data')[0])).first()
-    return render_template('search.html', num=len(result), result=result, search_key=key, newest=news, the_user=the_user)
+    return render_template('search.html', num=len(result), result=result, search_key=key, newest=news,
+                           the_user=the_user)
 
 
 @app.route('/logic/signin/', methods=['GET', 'POST'])
@@ -121,7 +124,7 @@ def signin():
                 _secret_key = my_sha1(the_id + password + the_time + the_secret_key)
 
                 resp = make_response(redirect(url_for('note_nav')))
-                resp.set_cookie('data', the_id + the_time + _secret_key)
+                resp.set_cookie('data', the_id + '/' + the_time + '/' + _secret_key)
                 return resp
             else:
                 # 匹配失败
@@ -162,7 +165,8 @@ def add_comment(note_id):
         the_user = users.query.filter(users.id == int(request.cookies.get('data')[0])).first()
         title = request.form['title']
         content = request.form['content']
-        add_ = comments(user_id=the_user.id, at_note_id=note_id, title=title, content= content, create_time=datetime.datetime.now())
+        add_ = comments(user_id=the_user.id, at_note_id=note_id, title=title, content=content,
+                        create_time=datetime.datetime.now())
         db.session.add(add_)
         db.session.commit()
         return redirect(url_for('note', note_id=note_id))
@@ -178,15 +182,18 @@ def add_comment(note_id):
 
 def identify():
     cookies = request.cookies.get('data')
-    if not cookies or cookies[0]=='0':
+    if not cookies:
         return False
-    time = cookies[1:27]
+    datas = cookies.split('/')
+    if len(datas) != 3:  # 不是服务器设置的cookies
+        return False
+    time = datas[1]
     if str(datetime.datetime.now()) > time:
         return False
-    id = int(cookies[0])
-    sh = cookies[27:]
-    result = users.query.filter(users.id==id).first()
-    calc_key = my_sha1(cookies[0]+result.passwd+time+the_secret_key)
+    id = int(datas[0])
+    sh = datas[2]
+    result = users.query.filter(users.id == id).first()
+    calc_key = my_sha1(datas[0] + result.passwd + time + the_secret_key)
     if sh == calc_key:
         return True
     else:
