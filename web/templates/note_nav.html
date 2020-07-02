@@ -54,7 +54,7 @@
 
         <div class="uk-alert-success animate__animated animate__flipInX" uk-alert style="position:absolute;top:5%;left:30%;z-index:99999">
             <a class="uk-alert-close" uk-close></a>
-            <p>最近才知道写笔记，所以暂未上传内容上去T﹏T，内容全为测试用</p>
+            <p>刚开始写，慢慢更吧</p>
         </div>
 
         <!--左部信息-->
@@ -81,9 +81,8 @@
                 <!--循环-->
                 {% for i in newest %}
                 <a href="/logic/note/{{i.id}}">
-                    <span> {{i.type_in_notes.name}}</span>
                     <h5>{{i.name}}</h5>
-                    <p>{{i.time}}</p>
+                    <p>{{i.time}} {{i.type_in_notes.name}}</p>
                 </a>
                 {% endfor %}
             </div>

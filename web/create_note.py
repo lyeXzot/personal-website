@@ -33,7 +33,7 @@ class categories(db.Model):
     the_notes = db.relationship('notes', backref='type_in_notes')
 
 
-print(len(notes.query.all()))
+print(work)
 
 name = ''
 content = ''
@@ -60,7 +60,7 @@ a = len(notes.query.all()) + 1
 content = content.replace(name + '.files', '/static/note_images/' + str(a))
 
 add_note = notes(name=name, category_id=category_id, describe=describe, content=content, time=datetime.datetime.now())
-print(name, describe, category_id)
+print(name, describe)
 
 db.session.add(add_note)
 
@@ -79,6 +79,12 @@ for i in work:
                 temp = f1.read()
                 with open(way + '/' + j, 'wb') as f2:
                     f2.write(temp)
+
+for i in work:
+    if i[-5:] == 'files':
+        os.rmdir('./temp_data/'+ i)
+    else:
+        os.remove('./temp_data/'+ i)
 
 print('success');
 
