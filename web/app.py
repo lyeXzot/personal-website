@@ -164,7 +164,7 @@ def add_comment(note_id):
     if identify():
         the_user = users.query.filter(users.id == int(request.cookies.get('data')[0])).first()
         title = request.form['title']
-        content = request.form['content']
+        content = request.form['content'].replace('\n', '<br>')
         add_ = comments(user_id=the_user.id, at_note_id=note_id, title=title, content=content,
                         create_time=datetime.datetime.now())
         db.session.add(add_)
