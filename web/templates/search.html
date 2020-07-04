@@ -63,9 +63,8 @@
                 <!--循环-->
                 {% for i in newest %}
                 <a href="/logic/note/{{i.id}}">
-                    <span> {{i.type_in_notes.name}}</span>
                     <h5>{{i.name}}</h5>
-                    <p>{{i.time}}</p>
+                    <p>{{i.time}} {{i.type_in_notes.name}}</p>
                 </a>
                 {% endfor %}
             </div>
